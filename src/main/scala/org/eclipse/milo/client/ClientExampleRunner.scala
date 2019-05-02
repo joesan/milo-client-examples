@@ -40,7 +40,11 @@ final class ClientExampleRunner(opcClient: OPCClient, isServerRequired: Boolean 
   Security.addProvider(new BouncyCastleProvider())
 
   def run(): Unit = {
-    val opcClientF = createClient()
+    createClient() flatMap {
+      case Some(client) =>
+
+      case None =>
+    }
   }
 
   private def createClient(): Future[Option[OpcUaClient]] = {
