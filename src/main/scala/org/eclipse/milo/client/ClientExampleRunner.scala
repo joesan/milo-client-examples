@@ -18,6 +18,7 @@ import scala.concurrent.Future
 import scala.collection.JavaConverters._
 import scala.util.{Failure, Success, Try}
 import scala.concurrent.ExecutionContext.Implicits.global
+import org.eclipse.milo.client.util._
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint
 
 
@@ -42,8 +43,15 @@ final class ClientExampleRunner(opcClient: OPCClient, isServerRequired: Boolean 
   def run(): Unit = {
     createClient() flatMap {
       case Some(client) =>
-
+        import java.util.concurrent.TimeUnit
+        try {
+          opcClient.run(client)
+        } catch {
+          case t: Throwable =>
+            logger.error("Error running client example: {}", t.getMessage, t)
+        }
       case None =>
+        logger.error(s"Error running example: ${ex.getMessage()}")
     }
   }
 
