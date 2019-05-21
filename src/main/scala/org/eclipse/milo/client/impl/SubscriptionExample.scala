@@ -1,26 +1,19 @@
 package org.eclipse.milo.client.impl
 
-import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaMonitoredItem
-import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaSubscription
-import org.eclipse.milo.opcua.stack.core.AttributeId
-import org.eclipse.milo.opcua.stack.core.Identifiers
-import org.eclipse.milo.opcua.stack.core.types.builtin.QualifiedName
-import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger
-import org.eclipse.milo.opcua.stack.core.types.enumerated.MonitoringMode
-import org.eclipse.milo.opcua.stack.core.types.enumerated.TimestampsToReturn
-import org.eclipse.milo.opcua.stack.core.types.structured.MonitoredItemCreateRequest
-import org.eclipse.milo.opcua.stack.core.types.structured.MonitoringParameters
-import org.eclipse.milo.opcua.stack.core.types.structured.ReadValueId
+import java.util.concurrent.atomic.AtomicLong
 import java.util.function.BiConsumer
 
+import com.google.common.collect.Lists.newArrayList
 import org.eclipse.milo.client.OPCClient
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient
-import org.slf4j.LoggerFactory
-
-import com.google.common.collect.Lists.newArrayList
+import org.eclipse.milo.opcua.sdk.client.api.subscriptions.{UaMonitoredItem, UaSubscription}
+import org.eclipse.milo.opcua.stack.core.{AttributeId, Identifiers}
+import org.eclipse.milo.opcua.stack.core.types.builtin.QualifiedName
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint
-
-import java.util.concurrent.atomic.AtomicLong
+import org.eclipse.milo.opcua.stack.core.types.enumerated.{MonitoringMode, TimestampsToReturn}
+import org.eclipse.milo.opcua.stack.core.types.structured.{MonitoredItemCreateRequest, MonitoringParameters, ReadValueId}
+import org.slf4j.LoggerFactory
 
 
 final class SubscriptionExample extends OPCClient {
